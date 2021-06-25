@@ -1,35 +1,40 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Platform, TouchableOpacity, TextComponent } from 'react-native'
-import Constants from 'expo-constants';
-
-import { purple, white } from '../utils/colors';
-
-
+import { View, Text, Button, StyleSheet } from 'react-native'
 
 class DeckList extends Component {
     render() {
+        const { navigation, decks } = this.props;
 
-      return (
-        <View style={styles.deck}>
-          {JSON.stringify(Object.keys(this.props.decks))}
-          {Object.keys(this.props.decks).map((deck) => {
-              return (
-              <View style={styles.deck}>
-                <Text style={{fontSize: 20}}>
-                  {this.props.decks[deck].title}
+        return (
+            <View style={styles.deck}>
+                <Text>
+                    {JSON.stringify(Object.keys(this.props))}
+                    {JSON.stringify(Object.keys(decks))}
                 </Text>
-                <Text style={{fontSize: 12}}>
-                  {this.props.decks[deck].questions.length}
-                </Text>
-              </View>
-              )})
-          }
-        </View>
-      )
+                {Object.keys(decks).map((deck, index) => {
+                    return (
+                        <View style={styles.deck} key={index}>
+                            <Text style={{fontSize: 20}}>
+                                {decks[deck].title}
+                            </Text>
+                            <Text style={{fontSize: 12}}>
+                                { decks[deck].questions !== undefined ? decks[deck].questions.length : 0}
+                            </Text>
+                            <Button
+                                title="Deck View"
+                                onPress={() => navigation.navigate('DeckView')}
+                            />
+                            <Button title="Go back" onPress={() => navigation.goBack()} />
+                            <Button title="Now update" onPress={this.mergeData2} />
+                        </View>
+                    )
+                })}
+            </View>
+        )
     }
-  }
+}
 
-  const styles = StyleSheet.create({
+const styles = StyleSheet.create({
     deck: {
         flex: 1,
         backgroundColor: '#aaa',
@@ -38,7 +43,8 @@ class DeckList extends Component {
         borderColor: '#555',
         borderStyle: 'solid',
         borderWidth: '5px'
-      },
+    },
+    // TODO: add more styling
     // item: {
     //   backgroundColor: white,
     //   borderRadius: Platform.OS === 'ios' ? 16 : 2,
@@ -60,17 +66,6 @@ class DeckList extends Component {
     //   paddingTop: 20,
     //   paddingBottom: 20
     // }
-  })
-
-
-//   function mapStateToProps (entries) {
-//     return {
-//       entries
-//     }
-//   }
-
-//   export default connect(
-//     mapStateToProps,
-//   )(History)
+})
 
 export default DeckList;

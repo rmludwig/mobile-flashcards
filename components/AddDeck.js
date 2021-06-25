@@ -2,27 +2,27 @@ import React, { Component } from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native'
 // import { purple, white } from '../utils/colors';
 
-class DeckView extends Component {
+class AddDeck extends Component {
     render() {
         const { navigation } = this.props;
         return (
-            <View style={styles.DeckView}>
+            <View style={styles.AddDeck}>
                 {JSON.stringify(Object.keys(this.props))}
                 <Text style={{fontSize: 20}}>
-                    DeckView
+                AddDeck
                 </Text>
-                <Button
-                  title="Question View"
-                  onPress={() => navigation.navigate('QuestionView')}
-                />
                 <Button title="Go back" onPress={() => navigation.goBack()} />
+                <Button
+                  title="Go To Deck List"
+                  onPress={() => navigation.navigate('DeckList')}
+                />
             </View>
         )
     }
 }
 
 const styles = StyleSheet.create({
-    DeckView: {
+    AddDeck: {
         flex: 1,
         backgroundColor: '#aaa',
         alignItems: 'stretch',
@@ -33,4 +33,4 @@ const styles = StyleSheet.create({
     },
 })
 
-export default DeckView;
+export default AddDeck;
