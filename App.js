@@ -133,8 +133,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     loadingText:{
-        fontSize: '16px',
-        margin: '10px'
+        fontSize: 16,
+        margin: 10
     }
 });
 
