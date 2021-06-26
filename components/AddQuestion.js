@@ -50,14 +50,14 @@ class AddQuestion extends Component {
                         <Text style={{fontWeight: 'bold'}}>Build Test Decks</Text>
                     </TouchableOpacity>
                     <Text style={{fontWeight: "500", padding: "10px"}}>Color Pallet</Text>
-                    <Text style={{textAlign: 'center', width: 200, backgroundColor: '#fff', fontWeight: 'bold', color: red}}>red</Text>
-                    <Text style={{textAlign: 'center', width: 200, backgroundColor: '#fff', fontWeight: 'bold', color: orange}}>orange</Text>
-                    <Text style={{textAlign: 'center', width: 200, backgroundColor: '#fff', fontWeight: 'bold', color: yeller}}>yeller</Text>
-                    <Text style={{textAlign: 'center', width: 200, backgroundColor: '#fff', fontWeight: 'bold', color: green}}>green</Text>
-                    <Text style={{textAlign: 'center', width: 200, backgroundColor: '#fff', fontWeight: 'bold', color: blue}}>blue</Text>
-                    <Text style={{textAlign: 'center', width: 200, backgroundColor: '#fff', fontWeight: 'bold', color: slate}}>slate</Text>
-                    <Text style={{textAlign: 'center', width: 200, backgroundColor: '#fff', fontWeight: 'bold', color: gray}}>gray</Text>
-                    <Text style={{textAlign: 'center', width: 200, backgroundColor: '#fff', fontWeight: 'bold', color: white}}>white</Text>
+                    <Text style={{textAlign: 'center', width: "200px", backgroundColor: '#fff', fontWeight: 'bold', color: red}}>red</Text>
+                    <Text style={{textAlign: 'center', width: "200px", backgroundColor: '#fff', fontWeight: 'bold', color: orange}}>orange</Text>
+                    <Text style={{textAlign: 'center', width: "200px", backgroundColor: '#fff', fontWeight: 'bold', color: yeller}}>yeller</Text>
+                    <Text style={{textAlign: 'center', width: "200px", backgroundColor: '#fff', fontWeight: 'bold', color: green}}>green</Text>
+                    <Text style={{textAlign: 'center', width: "200px", backgroundColor: '#fff', fontWeight: 'bold', color: blue}}>blue</Text>
+                    <Text style={{textAlign: 'center', width: "200px", backgroundColor: '#fff', fontWeight: 'bold', color: slate}}>slate</Text>
+                    <Text style={{textAlign: 'center', width: "200px", backgroundColor: '#fff', fontWeight: 'bold', color: gray}}>gray</Text>
+                    <Text style={{textAlign: 'center', width: "200px", backgroundColor: '#fff', fontWeight: 'bold', color: white}}>white</Text>
                 </View>
             </View>
         )
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         // borderColor: '#555',
         // borderStyle: 'solid',
-        // borderWidth: '5px',
+        // borderWidth: 5,
     },
     Header: {
         backgroundColor: white,

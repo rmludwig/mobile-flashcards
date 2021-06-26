@@ -8,7 +8,7 @@ class QuestionView extends Component {
         return (
             <View style={styles.QuestionView}>
                 {JSON.stringify(Object.keys(this.props))}
-                <Text style={{fontSize: 20}}>
+                <Text style={{fontSize: "20"}}>
                 QuestionView
                 </Text>
                 <Button title="Go back" onPress={() => navigation.goBack()} />
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         borderColor: '#555',
         borderStyle: 'solid',
-        borderWidth: '5px'
+        borderWidth: 5
     },
 })
 

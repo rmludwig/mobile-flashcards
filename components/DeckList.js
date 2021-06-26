@@ -23,10 +23,10 @@ class DeckList extends Component {
                     {Object.keys(decks).map((deck, index) => {
                         return (
                             <View style={styles.deck} key={index}>
-                                <Text style={{fontSize: 20}}>
+                                <Text style={{fontSize: "20"}}>
                                     {decks[deck].title}
                                 </Text>
-                                <Text style={{fontSize: 12}}>
+                                <Text style={{fontSize: "12"}}>
                                     { decks[deck].questions !== undefined ? decks[deck].questions.length : 0}
                                 </Text>
                                 <Button
@@ -52,30 +52,8 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         borderColor: '#555',
         borderStyle: 'solid',
-        borderWidth: '5px'
+        borderWidth: 5,
     },
-    // TODO: add more styling
-    // item: {
-    //   backgroundColor: white,
-    //   borderRadius: Platform.OS === 'ios' ? 16 : 2,
-    //   padding: 20,
-    //   marginLeft: 10,
-    //   marginRight: 10,
-    //   marginTop: 17,
-    //   justifyContent: 'center',
-    //   shadowRadius: 3,
-    //   shadowOpacity: 0.8,
-    //   shadowColor: 'rgba(0, 0, 0, 0.24)',
-    //   shadowOffset: {
-    //     width: 0,
-    //     height: 3
-    //   },
-    // },
-    // noDataText: {
-    //   fontSize: 20,
-    //   paddingTop: 20,
-    //   paddingBottom: 20
-    // }
 })
 
 export default DeckList;

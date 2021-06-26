@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         // borderColor: '#555',
         // borderStyle: 'solid',
-        // borderWidth: '5px',
+        // borderWidth: 5,
     },
     Header: {
         backgroundColor: orange,
