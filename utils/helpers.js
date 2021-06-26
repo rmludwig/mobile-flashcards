@@ -16,22 +16,21 @@ export function getDecks () {
 /**
  * Function to add a new deck to async storage.
  *
- * @returns promise with merged data converted to an object
+ * @returns promise
  */
-export function createDeck (title) {
+export function createDeck (newDeckTitle) {
     return AsyncStorage.mergeItem(STORAGE_KEY, JSON.stringify({
-        [title]: {
-            title: title,
+        [newDeckTitle]: {
+            title: newDeckTitle,
             questions: []
         }
     }))
-    .then(JSON.parse);
 }
 
 /**
  * Function to add a question to existing deck in async storage.
  *
- * @returns promise with merged data converted to an object
+ * @returns promise with merged data converted to an object ???????????????????????????????
  */
 export function addCardToDeck (deck, new_question) {
     return AsyncStorage.mergeItem(STORAGE_KEY, JSON.stringify({

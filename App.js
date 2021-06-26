@@ -7,7 +7,7 @@ import { Ionicons } from '@expo/vector-icons';
 import AddDeck from './components/AddDeck';
 import DeckStack from './components/DeckStack';
 import Settings from './components/Settings';
-import { getDecks, emptyAllDecks, buildTestDecks } from './utils/helpers'
+import { getDecks, emptyAllDecks, buildTestDecks, createDeck } from './utils/helpers'
 
 const Tab = createBottomTabNavigator();
 
@@ -43,6 +43,23 @@ class App extends React.Component {
             }));
             //TODO: remove logging
             getDecks().then((decks) => {alert("Built new decks as: " + JSON.stringify(decks)) });
+        });
+    }
+
+    addNewDeck = (newDeckName) => {
+        const currentDecks = this.state.decks;
+        createDeck(newDeckName).then(() => {
+            this.setState(() => ({
+                decks: {
+                    ...currentDecks,
+                    [newDeckName]: {
+                        title: newDeckName,
+                        questions: []
+                    }
+                }
+            }));
+            //TODO: remove logging
+            getDecks().then((decks) => {alert("Full deck list from storage is: " + JSON.stringify(decks)) });
         });
     }
 
@@ -95,7 +112,9 @@ class App extends React.Component {
                         <Tab.Screen name="Decks">
                             {props => <DeckStack {...props} decks={this.state.decks} />}
                         </Tab.Screen>
-                        <Tab.Screen name="New Deck" component={AddDeck} />
+                        <Tab.Screen name="New Deck">
+                            {props => <AddDeck {...props} addNewDeck={this.addNewDeck} />}
+                        </Tab.Screen>
                         <Tab.Screen name="Settings">
                             {props => <Settings {...props} clearAllDeckData={this.clearAllDeckData} buildTestData={this.buildTestData} />}
                         </Tab.Screen>
