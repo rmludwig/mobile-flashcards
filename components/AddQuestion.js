@@ -49,7 +49,7 @@ class AddQuestion extends Component {
                     }}>
                         <Text style={{fontWeight: 'bold'}}>Build Test Decks</Text>
                     </TouchableOpacity>
-                    <Text style={{fontWeight: 500, padding: 10}}>Color Pallet</Text>
+                    <Text style={{fontWeight: "500", padding: "10px"}}>Color Pallet</Text>
                     <Text style={{textAlign: 'center', width: 200, backgroundColor: '#fff', fontWeight: 'bold', color: red}}>red</Text>
                     <Text style={{textAlign: 'center', width: 200, backgroundColor: '#fff', fontWeight: 'bold', color: orange}}>orange</Text>
                     <Text style={{textAlign: 'center', width: 200, backgroundColor: '#fff', fontWeight: 'bold', color: yeller}}>yeller</Text>

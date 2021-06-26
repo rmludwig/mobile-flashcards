@@ -26,10 +26,10 @@ class Settings extends Component {
                     }}>
                         <Text style={{fontWeight: 'bold'}}>Build Test Decks</Text>
                     </TouchableOpacity>
-                    <Text style={{fontWeight: 500, padding: 10}}>Color Pallet</Text>
+                    <Text style={{fontWeight: "500", padding: "10px"}}>Color Pallet</Text>
                     <Text style={{textAlign: 'center', width: 200, backgroundColor: '#fff', fontWeight: 'bold', color: red}}>red</Text>
                     <Text style={{textAlign: 'center', width: 200, backgroundColor: '#fff', fontWeight: 'bold', color: orange}}>orange</Text>
-                    <Text style={{textAlign: 'center', width: 200, backgroundColor: '#fff', fontWeight: 'bold', color: yeller}}>yeller</Text>
+                    <Text style={{textAlign: 'center', width: 200, backgroundColor: '#fff', fontWeight: 'bold', color: yeller}}>yellow</Text>
                     <Text style={{textAlign: 'center', width: 200, backgroundColor: '#fff', fontWeight: 'bold', color: green}}>green</Text>
                     <Text style={{textAlign: 'center', width: 200, backgroundColor: '#fff', fontWeight: 'bold', color: blue}}>blue</Text>
                     <Text style={{textAlign: 'center', width: 200, backgroundColor: '#fff', fontWeight: 'bold', color: slate}}>slate</Text>
@@ -52,12 +52,13 @@ const styles = StyleSheet.create({
         // borderWidth: '5px',
     },
     Header: {
-        backgroundColor: white,
+        backgroundColor: orange,
         alignItems: 'stretch',
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: white,
         height: 70,
+        color: white,
     },
     Title:{
         fontWeight: 500,
