@@ -9,18 +9,19 @@ const DeckStack = createStackNavigator();
 
 class NavDecks extends Component {
     render() {
-        const { decks } = this.props;
+        const { decks, addNewCard } = this.props;
         return (
             <View style={styles.primaryView}>
                 <DeckStack.Navigator initialRouteName="DeckList" screenOptions={{headerTitleAlign: 'center'}}>
+                    {/* TODO: using AppContext could be more efficient than using callback to pass props */}
                     <DeckStack.Screen name="DeckList" options={{headerStyle: {height: 70}}}>
-                        {props => <DeckList {...props} decks={this.props.decks} />}
+                        {props => <DeckList {...props} decks={decks} />}
                     </DeckStack.Screen>
-                    {Object.keys(decks).map((deckName) => {
+                    {decks !== null && Object.keys(decks).length > 0 && Object.keys(decks).map((deckName) => {
                         const deck = this.props.decks[deckName];
                         return (
                             <DeckStack.Screen name={deckName} key={deckName} options={{headerStyle: {height: 70}}}>
-                                {props => <NavQuestions {...props} deck={deck} deckStack={DeckStack} />}
+                                {props => <NavQuestions {...props} deck={deck} addNewCard={addNewCard} />}
                             </DeckStack.Screen>
                         )
                     })}

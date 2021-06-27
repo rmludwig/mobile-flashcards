@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView, ScrollView } from 'react-native';
 
 import { red, orange, yeller, green, blue, slate, gray, white } from '../utils/colors';
 
@@ -9,36 +9,47 @@ class DeckList extends Component {
         // TODO remove logging
         console.log("Decks found in DeckList:", decks);
 
-        if (! decks) {
+        if (! decks || Object.keys(decks).length < 1) {
             return (
                 <View style={styles.primaryView}>
-                    <Text>You should add some decks and questions...</Text>
+                    <View style={styles.ButtonGroupSimple}>
+                        <Text style={[styles.ButtonGroupText, {fontSize: 14}]}>
+                            Add some decks and cards to get started...
+                        </Text>
+                        <TouchableOpacity style={[styles.Button, {borderColor: green}]} onPress={() => {
+                                navigation.navigate('New Deck')
+                        }}>
+                            <Text style={{fontWeight: 'bold'}}>Add Deck</Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
             )
         }
         else {
             return (
-                <View style={styles.primaryView}>
-                    {Object.keys(decks).map((deckName, index) => {
-                        return (
-                            <View style={styles.deck} key={index}>
-                                <View style={styles.ButtonGroup}>
-                                    <Text style={styles.ButtonGroupText}>
-                                        {decks[deckName].title}
-                                    </Text>
-                                    <Text style={[styles.ButtonGroupText, {fontSize: 12, color: white}]}>
-                                        Questions: { decks[deckName].questions !== undefined ? decks[deckName].questions.length : 0}
-                                    </Text>
-                                    <TouchableOpacity style={styles.Button} onPress={() => {
-                                        navigation.navigate(deckName)
-                                    }}>
-                                        <Text style={{fontWeight: 'bold'}}>View Deck</Text>
-                                    </TouchableOpacity>
+                <SafeAreaView style={styles.primaryView}>
+                    <ScrollView>
+                        {Object.keys(decks).map((deckName, index) => {
+                            return (
+                                <View style={styles.deck} key={index}>
+                                    <View style={styles.ButtonGroup}>
+                                        <Text style={styles.ButtonGroupText}>
+                                            {decks[deckName].title}
+                                        </Text>
+                                        <Text style={[styles.ButtonGroupText, {fontSize: 12, color: white}]}>
+                                            Questions: { decks[deckName].questions !== undefined ? decks[deckName].questions.length : 0}
+                                        </Text>
+                                        <TouchableOpacity style={styles.Button} onPress={() => {
+                                            navigation.navigate(deckName)
+                                        }}>
+                                            <Text style={{fontWeight: 'bold'}}>View Deck</Text>
+                                        </TouchableOpacity>
+                                    </View>
                                 </View>
-                            </View>
-                        )
-                    })}
-                </View>
+                            )
+                        })}
+                    </ScrollView>
+                </SafeAreaView>
             )
         }
     }
@@ -59,7 +70,14 @@ const styles = StyleSheet.create({
         margin: 10,
         paddingTop: 20,
         borderWidth: 2,
-        borderRadius: 8,
+        borderRadius: 8
+    },
+    ButtonGroupSimple: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        margin: 10,
+        paddingTop: 20
     },
     ButtonGroupText: {
         fontSize: 20,
@@ -68,7 +86,7 @@ const styles = StyleSheet.create({
         height: 40,
         textAlign: 'center',
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'center'
     },
     Button: {
         width: 200,
@@ -82,7 +100,7 @@ const styles = StyleSheet.create({
         marginBottom: 20,
         padding: 5,
         paddingLeft: 25,
-        paddingRight: 25,
+        paddingRight: 25
     }
 })
 

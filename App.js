@@ -7,7 +7,7 @@ import { Ionicons } from '@expo/vector-icons';
 import AddDeck from './components/AddDeck';
 import NavDecks from './components/NavDecks';
 import Settings from './components/Settings';
-import { getDecks, emptyAllDecks, buildTestDecks, createDeck } from './utils/helpers';
+import { getDecks, emptyAllDecks, buildTestDecks, createDeck, addCardToDeck } from './utils/helpers';
 
 const Tab = createBottomTabNavigator();
 
@@ -31,7 +31,7 @@ class App extends React.Component {
             this.setState({decks: {}})
         )
         //TODO: remove logging
-        getDecks().then((decks) => {alert("Removed all deck content. Decks = " + JSON.stringify(decks)) });
+        //getDecks().then((decks) => {alert("Removed all deck content. Decks = " + JSON.stringify(decks)) });
     }
 
     buildTestData = () => {
@@ -40,7 +40,7 @@ class App extends React.Component {
                 decks
             }));
             //TODO: remove logging
-            getDecks().then((decks) => {alert("Built new decks as: " + JSON.stringify(decks)) });
+            //getDecks().then((decks) => {alert("Built new decks as: " + JSON.stringify(decks)) });
         });
     }
 
@@ -57,17 +57,36 @@ class App extends React.Component {
                 }
             }));
             //TODO: remove logging
-            getDecks().then((decks) => {alert("Full deck list from storage is: " + JSON.stringify(decks)) });
+            //getDecks().then((decks) => {alert("Full deck list from storage is: " + JSON.stringify(decks)) });
         });
     }
 
-
-
-
+    addNewCard = (deck, question, answer) => {
+        const currentDecks = this.state.decks;
+        addCardToDeck(deck, question, answer).then(() => {
+            this.setState(() => ({
+                decks: {
+                    ...currentDecks,
+                    [deck.title]: {
+                        ...deck,
+                        questions: [
+                            ...deck.questions,
+                            {
+                                question: question,
+                                answer: answer
+                            }
+                        ]
+                    }
+                }
+            }));
+            //TODO: remove logging
+            //getDecks().then((decks) => {alert("Deck list with new question from storage is: " + JSON.stringify(decks)) });
+        });
+    }
 
     render() {
         // TODO: remove logging
-        console.log("rendering with state = ", this.state);
+        //console.log("App rendering with state = ", this.state);
 
         if (! this.state.hasLoaded) {
             return (
@@ -109,7 +128,7 @@ class App extends React.Component {
                     >
                         {/* TODO: using AppContext could be more efficient than using callback to pass props */}
                         <Tab.Screen name="Decks">
-                            {props => <NavDecks {...props} decks={this.state.decks} />}
+                            {props => <NavDecks {...props} decks={this.state.decks} addNewCard={this.addNewCard}/>}
                         </Tab.Screen>
                         <Tab.Screen name="New Deck">
                             {props => <AddDeck {...props} addNewDeck={this.addNewDeck} />}

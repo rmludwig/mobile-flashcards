@@ -9,6 +9,7 @@ class AddDeck extends Component {
 
     render() {
         const deckName = this.state.deckName;
+        const { navigation } = this.props;
         return (
             <View style={styles.AddDeck}>
                 <View style={styles.Header}>
@@ -25,8 +26,11 @@ class AddDeck extends Component {
                     />
                     <View style={styles.ButtonPosition}>
                         <TouchableOpacity style={styles.Button} onPress={() => {
-                            this.props.addNewDeck(this.state.deckName);
-                            this.setState({deckName: ''});
+                            if (this.state.deckName) {
+                                this.props.addNewDeck(this.state.deckName);
+                                this.setState({deckName: ''});
+                                navigation.navigate('Decks');
+                            }
                         }}>
                             <Text style={{fontWeight: 'bold'}}>Add Deck</Text>
                         </TouchableOpacity>

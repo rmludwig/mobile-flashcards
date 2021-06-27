@@ -30,16 +30,15 @@ export function createDeck (newDeckTitle) {
 /**
  * Function to add a question to existing deck in async storage.
  *
- * @returns promise with merged data converted to an object ???????????????????????????????
+ * @returns promise
  */
-export function addCardToDeck (deck, new_question) {
+export function addCardToDeck (deck, question, answer) {
     return AsyncStorage.mergeItem(STORAGE_KEY, JSON.stringify({
         [deck.title]: {
             ...deck,
-            questions: deck.questions.concat(new_question)
+            questions: deck.questions.concat({question: question, answer: answer})
         }
     }))
-    .then(JSON.parse);
 }
 
 /**

@@ -19,12 +19,20 @@ class DeckStats extends Component {
                     <Text style={styles.ButtonGroupText}>
                         Score {/* QuestionView {decks[deckName].title} */}
                     </Text>
-                    {deck.questions.length ?
 
+                    <Text style={styles.ButtonGroupText}>
+                        Add a new flash card to this deck or start the quiz with the current set.
+                    </Text>
+                    <TouchableOpacity style={[styles.Button, {borderColor: green}]} onPress={() => {
+                            navigation.navigate('AddCard')
+                    }}>
+                        <Text style={{fontWeight: 'bold'}}>Add Question</Text>
+                    </TouchableOpacity>
+                    {deck.questions.length ?
                         <TouchableOpacity style={styles.Button} onPress={() => {
                             navigation.navigate('Question_1')
                         }}>
-                            <Text style={{fontWeight: 'bold'}}>Question 1</Text>
+                            <Text style={{fontWeight: 'bold'}}>Start Quiz</Text>
                         </TouchableOpacity>
                     :
                         <Text style={{fontWeight: 'bold'}}>No questions present</Text>
