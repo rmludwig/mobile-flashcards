@@ -1,32 +1,35 @@
 import React, { Component } from 'react';
-import { View, Text, Button, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { red, orange, yeller, green, blue, slate, gray, white } from '../utils/colors';
 
 class DeckStats extends Component {
     render() {
         const { navigation, deck } = this.props;
-        console.log(navigation)
+        // TODO remove logging
         console.log(deck)
         return (
             <View style={styles.primaryView}>
-                <Text style={{fontSize: "20"}}>
-                    DeckSTATS TBD
-                </Text>
-                <Text style={{fontSize: "20"}}>
-                    Question answered
-                </Text>
-                <Text style={{fontSize: "20"}}>
-                    Score
-                </Text>
-                <Text style={{fontSize: "20"}}>
-                    Answer first question
-                </Text>
+                <View style={styles.ButtonGroup}>
+                    <Text style={styles.ButtonGroupText}>
+                        DeckSTATS TBD {/* QuestionView {decks[deckName].title} */}
+                    </Text>
+                    <Text style={styles.ButtonGroupText}>
+                        Question answered {/* QuestionView {decks[deckName].title} */}
+                    </Text>
+                    <Text style={styles.ButtonGroupText}>
+                        Score {/* QuestionView {decks[deckName].title} */}
+                    </Text>
+                    {deck.questions.length ?
 
-                <Button
-                  title="Question 1"
-                  onPress={() => navigation.navigate('Question_1')}
-                />
-
+                        <TouchableOpacity style={styles.Button} onPress={() => {
+                            navigation.navigate('Question_1')
+                        }}>
+                            <Text style={{fontWeight: 'bold'}}>Question 1</Text>
+                        </TouchableOpacity>
+                    :
+                        <Text style={{fontWeight: 'bold'}}>No questions present</Text>
+                    }
+                </View>
             </View>
         )
     }
@@ -37,10 +40,7 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: gray,
         alignItems: 'stretch',
-        justifyContent: 'flex-start',
-        // borderColor: '#555',
-        // borderStyle: 'solid',
-        // borderWidth: 5,
+        justifyContent: 'flex-start'
     },
     Header: {
         backgroundColor: white,
@@ -48,11 +48,11 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: white,
-        height: 70,
+        height: 70
     },
     Title:{
         fontWeight: 500,
-        fontSize: 18,
+        fontSize: 18
     },
     ButtonGroup: {
         flex: 1,
@@ -60,28 +60,28 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'flex-start',
         margin: 10,
-        paddingTop: 20,
+        paddingTop: 20
     },
     ButtonGroupText: {
         width: 300,
         height: 40,
         textAlign: 'center',
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'center'
     },
     Button: {
         width: 200,
         textAlign: 'center',
         fontWeight: 500,
         backgroundColor: white,
-        borderColor: red,
+        borderColor: blue,
         borderWidth: 2,
         borderRadius: 8,
         margin: 10,
         marginBottom: 20,
         padding: 5,
         paddingLeft: 25,
-        paddingRight: 25,
+        paddingRight: 25
     },
     Input: {
         height: 40,
@@ -90,8 +90,8 @@ const styles = StyleSheet.create({
         padding: 3,
         borderWidth: 1,
         borderRadius: 8,
-        textAlignVertical: 'top',
-    },
+        textAlignVertical: 'top'
+    }
 })
 
 export default DeckStats;
