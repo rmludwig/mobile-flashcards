@@ -36,8 +36,8 @@ class DeckList extends Component {
                                         <Text style={styles.ButtonGroupText}>
                                             {decks[deckName].title}
                                         </Text>
-                                        <Text style={[styles.ButtonGroupText, {fontSize: 12, color: white}]}>
-                                            Questions: { decks[deckName].questions !== undefined ? decks[deckName].questions.length : 0}
+                                        <Text style={[styles.ButtonGroupText, {fontSize: 12, color: slate}]}>
+                                            Card Count: { decks[deckName].questions !== undefined ? decks[deckName].questions.length : 0}
                                         </Text>
                                         <TouchableOpacity style={styles.Button} onPress={() => {
                                             navigation.navigate(deckName)
@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontWeight: 500,
         backgroundColor: white,
-        borderColor: blue,
+        borderColor: slate,
         borderWidth: 2,
         borderRadius: 8,
         margin: 10,
