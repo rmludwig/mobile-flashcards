@@ -5,7 +5,8 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 
 import AddDeck from './components/AddDeck';
-import DeckStack from './components/DeckStack';
+// import DeckStack from './components/__DeckStack';
+import AllDecks from './components/AllDecks';
 import Settings from './components/Settings';
 import { getDecks, emptyAllDecks, buildTestDecks, createDeck } from './utils/helpers'
 
@@ -110,7 +111,7 @@ class App extends React.Component {
                     >
                         {/* TODO: using AppContext could be more efficient than using callback to pass props */}
                         <Tab.Screen name="Decks">
-                            {props => <DeckStack {...props} decks={this.state.decks} />}
+                            {props => <AllDecks {...props} decks={this.state.decks} />}
                         </Tab.Screen>
                         <Tab.Screen name="New Deck">
                             {props => <AddDeck {...props} addNewDeck={this.addNewDeck} />}

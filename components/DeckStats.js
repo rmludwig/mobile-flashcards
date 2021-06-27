@@ -1,36 +1,31 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity, Button, StyleSheet } from 'react-native';
-
+import { View, Text, Button, StyleSheet } from 'react-native';
 import { red, orange, yeller, green, blue, slate, gray, white } from '../utils/colors';
 
-class QuestionView extends Component {
+class DeckStats extends Component {
     render() {
-        const { navigation } = this.props;
+        const { navigation, deck } = this.props;
+        console.log(navigation)
+        console.log(deck)
         return (
             <View style={styles.primaryView}>
-
-                <View style={styles.ButtonGroup}>
-                <Text style={styles.ButtonGroupText}>
-                Question: BLAH BLAH BLAH {/* QuestionView {decks[deckName].title} */}
+                <Text style={{fontSize: "20"}}>
+                    DeckSTATS TBD
+                </Text>
+                <Text style={{fontSize: "20"}}>
+                    Question answered
+                </Text>
+                <Text style={{fontSize: "20"}}>
+                    Score
+                </Text>
+                <Text style={{fontSize: "20"}}>
+                    Answer first question
                 </Text>
 
-                <TouchableOpacity style={styles.Button} onPress={() => {
-                    navigation.goBack()
-                }}>
-                    <Text style={{fontWeight: 'bold'}}>Go Back</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.Button} onPress={() => {
-                    navigation.goBack()
-                }}>
-                    <Text style={{fontWeight: 'bold'}}>View Answer</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.Button} onPress={() => {
-                    navigation.goBack()
-                }}>
-                    <Text style={{fontWeight: 'bold'}}>Next Question</Text>
-                </TouchableOpacity>
-                </View>
-
+                <Button
+                  title="Question 1"
+                  onPress={() => navigation.navigate('Question_1')}
+                />
 
             </View>
         )
@@ -99,4 +94,4 @@ const styles = StyleSheet.create({
     },
 })
 
-export default QuestionView;
+export default DeckStats;
