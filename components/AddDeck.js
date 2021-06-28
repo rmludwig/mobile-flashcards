@@ -29,7 +29,7 @@ class AddDeck extends Component {
                             if (this.state.deckName) {
                                 this.props.addNewDeck(this.state.deckName);
                                 this.setState({deckName: ''});
-                                navigation.navigate('Decks');
+                                navigation.reset({routes: [{ name: 'Decks' }]});
                             }
                         }}>
                             <Text style={{fontWeight: 'bold'}}>Add Deck</Text>

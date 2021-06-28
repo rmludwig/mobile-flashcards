@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontWeight: 500,
         backgroundColor: white,
-        borderColor: slate,
+        borderColor: blue,
         borderWidth: 2,
         borderRadius: 8,
         margin: 10,

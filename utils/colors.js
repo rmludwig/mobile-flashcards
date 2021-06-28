@@ -1,6 +1,6 @@
 export const red = '#b22222'
 export const orange = '#ff7b25'
-export const yeller = '#fff038'
+export const yeller = '#fff68c'
 export const green = '#2e8b57'
 export const blue = '#4169E1'
 export const slate = '#555'

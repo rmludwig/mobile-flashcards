@@ -4,6 +4,7 @@ import { red, orange, yeller, green, blue, slate, gray, white } from '../utils/c
 
 class Settings extends Component {
     render() {
+        const { navigation } = this.props;
         return (
             <View style={styles.Settings}>
                 <View style={styles.Header}>
@@ -13,7 +14,8 @@ class Settings extends Component {
                     <Text style={styles.ButtonGroupText}>The 'Clear All Data' button will remove all data from the state and the local storage.</Text>
                     <TouchableOpacity style={styles.Button} onPress={() => {
                         if (confirm("All you sure you want to remove all data?")) {
-                            this.props.clearAllDeckData()
+                            this.props.clearAllDeckData();
+                            navigation.reset({routes: [{ name: 'Decks' }]});
                         }
                     }}>
                         <Text style={{fontWeight: 'bold'}}>Clear All Data</Text>
@@ -21,7 +23,8 @@ class Settings extends Component {
                     <Text style={styles.ButtonGroupText}>The 'Build Test Decks' button will replace contents of state and local storage with test data.</Text>
                     <TouchableOpacity style={styles.Button} onPress={() => {
                         if (confirm("All you sure you want to replace all decks with test data?")) {
-                            this.props.buildTestData()
+                            this.props.buildTestData();
+                            navigation.reset({routes: [{ name: 'Decks' }]});
                         }
                     }}>
                         <Text style={{fontWeight: 'bold'}}>Build Test Decks</Text>

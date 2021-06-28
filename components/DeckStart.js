@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { red, orange, yeller, green, blue, slate, gray, white } from '../utils/colors';
 
-class DeckStats extends Component {
+class DeckStart extends Component {
     render() {
-        const { navigation, deck, resetDeck, answered, correct } = this.props;
+        const { navigation, deck, setAnswer, answered, correct } = this.props;
         let questionAnswered = answered(deck.title) || 0;
         let questionCorrect = correct(deck.title) || 0;
 
         // TODO remove logging
-        console.log("Deck Stats props: ", this.props)
+        console.log("Deck Start props: ", this.props)
         return (
             <View style={styles.primaryView}>
                 <View style={styles.ButtonGroup}>
@@ -17,22 +17,21 @@ class DeckStats extends Component {
                         Card Count: {deck.questions.length}
                     </Text>
                     <Text style={styles.ButtonGroupText}>
-                        Score: {Math.round((questionCorrect * 100) / deck.questions.length)}%
+                        Question answered: {answered(deck.title)} / {deck.questions.length}
                     </Text>
                     <Text style={styles.ButtonGroupText}>
-                        Restart the quiz or discard answers and go to the Deck List.
+                        Add a new flash card to this deck or start the quiz with the current set.
                     </Text>
-                    <TouchableOpacity style={[styles.Button, {borderColor: red}]} onPress={() => {
-                            resetDeck(deck.title);
-                            navigation.reset({routes: [{ name: 'DeckStart' }]});
+                    <TouchableOpacity style={[styles.Button, {borderColor: green}]} onPress={() => {
+                            navigation.navigate('AddCard')
                     }}>
-                        <Text style={{fontWeight: 'bold'}}>Restart Quiz</Text>
+                        <Text style={{fontWeight: 'bold'}}>Add Question</Text>
                     </TouchableOpacity>
                     {deck.questions.length ?
-                        <TouchableOpacity style={[styles.Button]} onPress={() => {
-                            navigation.navigate('DeckList');
+                        <TouchableOpacity style={styles.Button} onPress={() => {
+                            navigation.navigate('Question_0')
                         }}>
-                            <Text style={{fontWeight: 'bold'}}>All Decks</Text>
+                            <Text style={{fontWeight: 'bold'}}>Start Quiz</Text>
                         </TouchableOpacity>
                     :
                         <Text style={{fontWeight: 'bold'}}>No questions present</Text>
@@ -102,4 +101,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default DeckStats;
+export default DeckStart;
