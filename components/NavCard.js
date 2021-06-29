@@ -10,7 +10,7 @@ import AddCard from './AddCard';
 
 const QuestionsStack = createStackNavigator();
 
-class NavQuestions extends Component {
+class NavCard extends Component {
     state = {
         answers: {}
     }
@@ -103,4 +103,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default NavQuestions;
+export default NavCard;

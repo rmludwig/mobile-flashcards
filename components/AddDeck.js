@@ -27,9 +27,11 @@ class AddDeck extends Component {
                     <View style={styles.ButtonPosition}>
                         <TouchableOpacity style={styles.Button} onPress={() => {
                             if (this.state.deckName) {
-                                this.props.addNewDeck(this.state.deckName);
+                                const newDeckName = this.state.deckName;
                                 this.setState({deckName: ''});
-                                navigation.reset({routes: [{ name: 'Decks' }]});
+                                this.props.addNewDeck(newDeckName)
+                                // navigation.reset(newDeckName);
+                                navigation.navigate('DeckList', {screen: newDeckName})
                             }
                         }}>
                             <Text style={{fontWeight: 'bold'}}>Add Deck</Text>

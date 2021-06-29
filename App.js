@@ -86,7 +86,7 @@ class App extends React.Component {
 
     render() {
         // TODO: remove logging
-        //console.log("App rendering with state = ", this.state);
+        console.log("App rendering with state = ", this.state);
 
         if (! this.state.hasLoaded) {
             return (

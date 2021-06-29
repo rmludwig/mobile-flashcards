@@ -3,16 +3,17 @@ import { StyleSheet, View } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import DeckList from './DeckList';
-import NavQuestions from './NavQuestions';
+import NavCard from './NavCard';
 
 const DeckStack = createStackNavigator();
 
 class NavDecks extends Component {
     render() {
         const { decks, addNewCard } = this.props;
+        console.log("NAv Decks PROPS: ", this.props)
         return (
             <View style={styles.primaryView}>
-                <DeckStack.Navigator initialRouteName="DeckList" screenOptions={{headerTitleAlign: 'center'}}>
+                <DeckStack.Navigator initialRouteName='DeckList' screenOptions={{headerTitleAlign: 'center'}}>
                     {/* TODO: using AppContext could be more efficient than using callback to pass props */}
                     <DeckStack.Screen name="DeckList" options={{headerStyle: {height: 70}}}>
                         {props => <DeckList {...props} decks={decks} />}
@@ -21,7 +22,7 @@ class NavDecks extends Component {
                         const deck = this.props.decks[deckName];
                         return (
                             <DeckStack.Screen name={deckName} key={deckName} options={{headerStyle: {height: 70}}}>
-                                {props => <NavQuestions {...props} deck={deck} addNewCard={addNewCard} />}
+                                {props => <NavCard {...props} deck={deck} addNewCard={addNewCard} />}
                             </DeckStack.Screen>
                         )
                     })}
