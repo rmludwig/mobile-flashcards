@@ -30,14 +30,14 @@ class Settings extends Component {
                     }}>
                         <Text style={{fontWeight: 'bold'}}>Build Test Decks</Text>
                     </TouchableOpacity>
-                    <Text style={[styles.buttonGroupText, {height: 40}]}>Test the alert notification.</Text>
+                    <Text style={[styles.buttonGroupText, {height: 30}]}>Test the alert notification.</Text>
                     <TouchableOpacity style={styles.button} onPress={() => {
                         clearAlertNotification();
                         setAlertNotification(.5);
                     }}>
                         <Text style={{fontWeight: 'bold'}}>Send Alert</Text>
                     </TouchableOpacity>
-                    <Text style={{fontWeight: 500, padding: 10}}>Color Pallet</Text>
+                    <Text style={{fontWeight: "500", padding: 10}}>Color Pallet</Text>
                     <Text style={{textAlign: 'center', width: 200, backgroundColor: none, fontWeight: 'bold', color: red}}>red</Text>
                     <Text style={{textAlign: 'center', width: 200, backgroundColor: none, fontWeight: 'bold', color: orange}}>orange</Text>
                     <Text style={{textAlign: 'center', width: 200, backgroundColor: none, fontWeight: 'bold', color: yeller}}>yellow</Text>
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
         color: white
     },
     title:{
-        fontWeight: 500,
+        fontWeight: "500",
         fontSize: 18
     },
     buttonGroup: {
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
     button: {
         width: 200,
         textAlign: 'center',
-        fontWeight: 500,
+        fontWeight: "500",
         backgroundColor: white,
         borderColor: red,
         borderWidth: 2,

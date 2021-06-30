@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import { red, orange, yeller, green, blue, slate, gray, white } from '../utils/colors';
+import { gray } from '../utils/colors';
 import QuestionView from './QuestionView';
 import DeckStart from './DeckStart';
 import DeckStats from './DeckStats';
@@ -62,11 +62,6 @@ class NavCard extends Component {
 
     render() {
         const { deck, addNewCard } = this.props;
-        // TODO: remove logging
-        // console.log(".................. NavCard:",this.props.navigation.dangerouslyGetState());
-        // console.log("============> Nav Card PROPS: ", this.props);
-        // // console.log(deck);
-        // // console.log("NavCard State: ", this.state);
         return (
             <View style={styles.primaryView}>
                 <QuestionsStack.Navigator initialRouteName="DeckStart" screenOptions={{headerShown: false}}>

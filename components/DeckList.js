@@ -1,22 +1,19 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView, ScrollView } from 'react-native';
 
-import { red, orange, yeller, green, blue, slate, gray, white } from '../utils/colors';
+import { yeller, green, blue, slate, gray, white } from '../utils/colors';
 
 class DeckList extends Component {
     render() {
-        const { navigation, decks, addNewDeck } = this.props;
-        // TODO remove logging
-        console.log(".................. DeckList:",this.props.navigation.dangerouslyGetState());
-        // console.log("Decks found in DeckList:", decks);
+        const { navigation, decks } = this.props;
         if (! decks || Object.keys(decks).length < 1) {
             return (
                 <View style={styles.primaryView}>
-                    <View style={styles.ButtonGroup}>
-                        <Text style={[styles.ButtonGroupText, {fontSize: 14}]}>
+                    <View style={[styles.buttonGroup, {backgroundColor: gray, borderWidth: 0}]}>
+                        <Text style={[styles.buttonGroupText, {fontSize: 14}]}>
                             Add some decks and cards to get started...
                         </Text>
-                        <TouchableOpacity style={[styles.Button, {borderColor: green}]} onPress={() => {
+                        <TouchableOpacity style={[styles.button, {borderColor: green}]} onPress={() => {
                                 navigation.navigate('New Deck');
                         }}>
                             <Text style={{fontWeight: 'bold'}}>Add Deck</Text>
@@ -29,31 +26,17 @@ class DeckList extends Component {
             return (
                 <SafeAreaView style={styles.primaryView}>
                     <ScrollView>
-                        <View style={styles.deck}>
-                            <View style={[styles.ButtonGroup, {backgroundColor: green}]}>
-                                <Text style={[styles.ButtonGroupText, {fontSize: 14, paddingBottom: 5, height: 20}]}>
-                                    Create New Deck
-                                </Text>
-                                <TouchableOpacity style={[styles.Button, {borderColor: slate}]} onPress={() => {
-                                    navigation.navigate('New Deck');
-                                }}>
-                                    <Text style={{fontWeight: 'bold'}}>Add Deck</Text>
-                                </TouchableOpacity>
-                            </View>
-                        </View>
-
-
                         {Object.keys(decks).map((deckName, index) => {
                             return (
                                 <View style={styles.deck} key={index}>
-                                    <View style={styles.ButtonGroup}>
-                                        <Text style={styles.ButtonGroupText}>
+                                    <View style={styles.buttonGroup}>
+                                        <Text style={styles.buttonGroupText}>
                                             {decks[deckName].title}
                                         </Text>
-                                        <Text style={[styles.ButtonGroupText, {fontSize: 12, color: slate}]}>
+                                        <Text style={[styles.buttonGroupText, {fontSize: 12, color: slate}]}>
                                             Card Count: { decks[deckName].questions !== undefined ? decks[deckName].questions.length : 0}
                                         </Text>
-                                        <TouchableOpacity style={styles.Button} onPress={() => {
+                                        <TouchableOpacity style={styles.button} onPress={() => {
                                             navigation.navigate(deckName)
                                         }}>
                                             <Text style={{fontWeight: 'bold'}}>View Deck</Text>
@@ -76,7 +59,7 @@ const styles = StyleSheet.create({
         alignItems: 'stretch',
         justifyContent: 'flex-start'
     },
-    ButtonGroup: {
+    buttonGroup: {
         flex: 1,
         backgroundColor: yeller,
         alignItems: 'center',
@@ -86,26 +69,26 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         borderRadius: 8
     },
-    ButtonGroupSimple: {
+    buttonGroupSimple: {
         flex: 1,
         alignItems: 'center',
         justifyContent: 'flex-start',
         margin: 10,
         paddingTop: 20
     },
-    ButtonGroupText: {
+    buttonGroupText: {
         fontSize: 20,
-        fontWeight: 500,
+        fontWeight: "500",
         width: 300,
         height: 40,
         textAlign: 'center',
         alignItems: 'center',
         justifyContent: 'center'
     },
-    Button: {
+    button: {
         width: 200,
         textAlign: 'center',
-        fontWeight: 500,
+        fontWeight: "500",
         backgroundColor: white,
         borderColor: blue,
         borderWidth: 2,

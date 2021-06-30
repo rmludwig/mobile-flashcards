@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity, Button, StyleSheet } from 'react-native';
-import { NavigationActions } from 'react-navigation'
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
-import { red, orange, yeller, green, blue, slate, gray, white } from '../utils/colors';
+import { red, green, blue, slate, gray, white } from '../utils/colors';
 
 class QuestionView extends Component {
     state = {
@@ -18,61 +17,54 @@ class QuestionView extends Component {
     render() {
         const { navigation, question, setAnswer, deckName, index, questionCount } = this.props;
         const { answerVisible } = this.state;
-        // TODO remove logging
-        console.log("Question View props:", this.props )
         return (
             <View style={styles.primaryView}>
-                <View style={styles.ButtonGroup}>
-                    <Text style={[styles.ButtonGroupText, {fontSize: 12, fontStyle: 'italic', height: 25, color: slate}]}>
+                <View style={styles.buttonGroup}>
+                    <Text style={[styles.buttonGroupText, {fontSize: 12, fontStyle: 'italic', height: 25, color: slate}]}>
                         {questionCount - (index + 1) } questions remaining
                     </Text>
-                    <Text style={styles.ButtonGroupText}>
+                    <Text style={styles.buttonGroupText}>
                         Question {index + 1}:
                     </Text>
-                    <Text style={[styles.ButtonGroupText, {fontWeight: 'bold'}]}>
+                    <Text style={[styles.buttonGroupText, {fontWeight: 'bold'}]}>
                         {question.question}
                     </Text>
                     {!answerVisible ?
-                        <View style={styles.ButtonGroup}>
-                            <TouchableOpacity style={styles.Button} onPress={() => {
+                        <View style={styles.buttonGroup}>
+                            <TouchableOpacity style={styles.button} onPress={() => {
                                 this.toggleVisible()
                             }}>
                                 <Text style={{fontWeight: 'bold'}}>Show Answer</Text>
                             </TouchableOpacity>
                         </View>
                     :
-                        <View style={styles.ButtonGroup}>
-                            <Text style={[styles.ButtonGroupText]}>
+                        <View style={styles.buttonGroup}>
+                            <Text style={[styles.buttonGroupText]}>
                                 Answer:
                             </Text>
-                            <Text style={[styles.ButtonGroupText, {fontWeight: 'bold', color: green}]}>
+                            <Text style={[styles.buttonGroupText, {fontWeight: 'bold', color: green}]}>
                                 {question.answer}
                             </Text>
-                            {/* <TouchableOpacity style={styles.Button} onPress={() => {
-                                this.toggleVisible()
-                            }}>
-                                <Text style={{fontWeight: 'bold'}}>Hide Answer</Text>
-                            </TouchableOpacity> */}
-                            <TouchableOpacity style={[styles.Button, {borderColor: green, width: 140, }]} onPress={() => {
-                                setAnswer(deckName, index, 1);
-                            }}>
-                                <Text style={{fontWeight: 'bold'}}>Correct</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity style={[styles.Button, {borderColor: red, width: 140, }]} onPress={() => {
-                                setAnswer(deckName, index, 0);
-                            }}>
-                                <Text style={{fontWeight: 'bold'}}>INCORRECT</Text>
-                            </TouchableOpacity>
+                            <View style={styles.buttonRow}>
+                                <TouchableOpacity style={[styles.button, {borderColor: green, width: 130, }]} onPress={() => {
+                                    setAnswer(deckName, index, 1);
+                                }}>
+                                    <Text style={{fontWeight: 'bold'}}>Correct</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity style={[styles.button, {borderColor: red, width: 130, }]} onPress={() => {
+                                    setAnswer(deckName, index, 0);
+                                }}>
+                                    <Text style={{fontWeight: 'bold'}}>Incorrect</Text>
+                                </TouchableOpacity>
+                            </View>
                             {questionCount === (index + 1) ?
-                                <TouchableOpacity style={styles.Button} onPress={() => {
-                                    // TODO remove logging
-                                    console.log("Attempting to route from: ", deckName );
+                                <TouchableOpacity style={styles.button} onPress={() => {
                                     navigation.navigate('DeckStats');
                                 }}>
                                     <Text style={{fontWeight: 'bold'}}>Complete Quiz</Text>
                                 </TouchableOpacity>
                             :
-                                <TouchableOpacity style={styles.Button} onPress={() => {
+                                <TouchableOpacity style={styles.button} onPress={() => {
                                     navigation.navigate('Question_' + (index + 1));
                                 }}>
                                     <Text style={{fontWeight: 'bold'}}>Next Question</Text>
@@ -80,9 +72,7 @@ class QuestionView extends Component {
                             }
                         </View>
                     }
-
-
-                    <TouchableOpacity style={styles.Button} onPress={() => {
+                    <TouchableOpacity style={styles.button} onPress={() => {
                         navigation.goBack()
                     }}>
                         <Text style={{fontWeight: 'bold'}}>Go Back</Text>
@@ -98,42 +88,33 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: gray,
         alignItems: 'stretch',
-        justifyContent: 'flex-start',
-        // borderColor: '#555',
-        // borderStyle: 'solid',
-        // borderWidth: 5,
+        justifyContent: 'flex-start'
     },
-    Header: {
-        backgroundColor: white,
-        alignItems: 'stretch',
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: white,
-        height: 70,
-    },
-    Title:{
-        fontWeight: 500,
-        fontSize: 18,
-    },
-    ButtonGroup: {
+    buttonGroup: {
         flex: 1,
         backgroundColor: gray,
         alignItems: 'center',
         justifyContent: 'flex-start',
         margin: 10,
-        paddingTop: 20,
+        paddingTop: 20
     },
-    ButtonGroupText: {
-        //width: 300,
+    buttonRow: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        margin: 5,
+        paddingTop: 10
+    },
+    buttonGroupText: {
         height: 40,
         textAlign: 'center',
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'center'
     },
-    Button: {
+    button: {
         width: 200,
         textAlign: 'center',
-        fontWeight: 500,
+        fontWeight: "500",
         backgroundColor: white,
         borderColor: blue,
         borderWidth: 2,
@@ -142,17 +123,8 @@ const styles = StyleSheet.create({
         marginBottom: 20,
         padding: 5,
         paddingLeft: 25,
-        paddingRight: 25,
-    },
-    Input: {
-        height: 40,
-        width: 250,
-        margin: 10,
-        padding: 3,
-        borderWidth: 1,
-        borderRadius: 8,
-        textAlignVertical: 'top',
-    },
+        paddingRight: 25
+    }
 })
 
 export default QuestionView;

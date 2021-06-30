@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
         height: 70
     },
     title:{
-        fontWeight: 500,
+        fontWeight: "500",
         fontSize: 18
     },
     buttonGroup: {
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
     button: {
         width: 200,
         textAlign: 'center',
-        fontWeight: 500,
+        fontWeight: "500",
         backgroundColor: white,
         borderColor: blue,
         borderWidth: 2,

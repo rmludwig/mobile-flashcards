@@ -2,18 +2,15 @@ import React, { Component } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 
+import { gray } from '../utils/colors';
 import DeckList from './DeckList';
 import NavCard from './NavCard';
-import AddDeck from './AddDeck';
 
 const DeckStack = createStackNavigator();
 
 class NavDecks extends Component {
     render() {
-        const { decks, addNewCard, addNewDeck } = this.props;
-        // TODO remove logging
-        console.log(".................. NavDecks:",this.props.navigation.dangerouslyGetState());
-        console.log("============> Nav Decks PROPS: ", this.props);
+        const { decks, addNewCard } = this.props;
         return (
             <View style={styles.primaryView}>
                 <DeckStack.Navigator initialRouteName='DeckList' screenOptions={{headerTitleAlign: 'center'}}>
@@ -27,10 +24,7 @@ class NavDecks extends Component {
                         )
                     })}
                     <DeckStack.Screen name="DeckList" options={{headerStyle: {height: 70}}}>
-                        {props => <DeckList {...props} decks={decks} addNewDeck={addNewDeck}/>}
-                    </DeckStack.Screen>
-                    <DeckStack.Screen name="New Deck">
-                        {props => <AddDeck {...props} addNewDeck={addNewDeck} />}
+                        {props => <DeckList {...props} decks={decks} />}
                     </DeckStack.Screen>
                 </DeckStack.Navigator>
             </View>
@@ -41,7 +35,7 @@ class NavDecks extends Component {
 const styles = StyleSheet.create({
     primaryView: {
         flex: 1,
-        backgroundColor: '#aaa',
+        backgroundColor: gray,
         alignItems: 'stretch',
         justifyContent: 'flex-start'
     },
