@@ -78,7 +78,9 @@ const styles = StyleSheet.create({
         marginBottom: 20,
         padding: 5,
         paddingLeft: 25,
-        paddingRight: 25
+        paddingRight: 25,
+        alignItems: 'center',
+        justifyContent: 'flex-start'
     },
     input: {
         height: 40,
