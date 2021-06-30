@@ -46,7 +46,7 @@ class App extends React.Component {
 
     addNewDeck = (newDeckName) => {
         const currentDecks = this.state.decks;
-        createDeck(newDeckName).then(() => {
+        return createDeck(newDeckName).then(() => {
             this.setState(() => ({
                 decks: {
                     ...currentDecks,
@@ -86,7 +86,7 @@ class App extends React.Component {
 
     render() {
         // TODO: remove logging
-        console.log("App rendering with state = ", this.state);
+        // console.log("App rendering with state = ", this.state);
 
         if (! this.state.hasLoaded) {
             return (
@@ -128,11 +128,11 @@ class App extends React.Component {
                     >
                         {/* TODO: using AppContext could be more efficient than using callback to pass props */}
                         <Tab.Screen name="Decks">
-                            {props => <NavDecks {...props} decks={this.state.decks} addNewCard={this.addNewCard}/>}
+                            {props => <NavDecks {...props} decks={this.state.decks} addNewCard={this.addNewCard} addNewDeck={this.addNewDeck} />}
                         </Tab.Screen>
-                        <Tab.Screen name="New Deck">
+                        {/* <Tab.Screen name="New Deck">
                             {props => <AddDeck {...props} addNewDeck={this.addNewDeck} />}
-                        </Tab.Screen>
+                        </Tab.Screen> */}
                         <Tab.Screen name="Settings">
                             {props => <Settings {...props} clearAllDeckData={this.clearAllDeckData} buildTestData={this.buildTestData} />}
                         </Tab.Screen>

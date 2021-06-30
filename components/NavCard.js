@@ -63,8 +63,10 @@ class NavCard extends Component {
     render() {
         const { deck, addNewCard } = this.props;
         // TODO: remove logging
-        console.log(deck);
-        console.log("NavQuestion State: ", this.state);
+        // console.log(".................. NavCard:",this.props.navigation.dangerouslyGetState());
+        // console.log("============> Nav Card PROPS: ", this.props);
+        // // console.log(deck);
+        // // console.log("NavCard State: ", this.state);
         return (
             <View style={styles.primaryView}>
                 <QuestionsStack.Navigator initialRouteName="DeckStart" screenOptions={{headerShown: false}}>
@@ -76,8 +78,6 @@ class NavCard extends Component {
                         {props => <AddCard {...props} deck={deck} addNewCard={addNewCard} />}
                     </QuestionsStack.Screen>
                     {deck.questions.map((question, index) => {
-                        // TODO: remove logging
-                        console.log('Question_' + (index + 1))
                         return (
                             <QuestionsStack.Screen name={'Question_' + (index)} key={index} options={{headerStyle: {height: 70}}}>
                                 {props => <QuestionView {...props} index={index} deckName={deck.title} question={question} setAnswer={this.setAnswer} questionCount={deck.questions.length} />}

@@ -4,20 +4,20 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import DeckList from './DeckList';
 import NavCard from './NavCard';
+import AddDeck from './AddDeck';
 
 const DeckStack = createStackNavigator();
 
 class NavDecks extends Component {
     render() {
-        const { decks, addNewCard } = this.props;
-        console.log("NAv Decks PROPS: ", this.props)
+        const { decks, addNewCard, addNewDeck } = this.props;
+        // TODO remove logging
+        console.log(".................. NavDecks:",this.props.navigation.dangerouslyGetState());
+        console.log("============> Nav Decks PROPS: ", this.props);
         return (
             <View style={styles.primaryView}>
                 <DeckStack.Navigator initialRouteName='DeckList' screenOptions={{headerTitleAlign: 'center'}}>
                     {/* TODO: using AppContext could be more efficient than using callback to pass props */}
-                    <DeckStack.Screen name="DeckList" options={{headerStyle: {height: 70}}}>
-                        {props => <DeckList {...props} decks={decks} />}
-                    </DeckStack.Screen>
                     {decks !== null && Object.keys(decks).length > 0 && Object.keys(decks).map((deckName) => {
                         const deck = this.props.decks[deckName];
                         return (
@@ -26,6 +26,12 @@ class NavDecks extends Component {
                             </DeckStack.Screen>
                         )
                     })}
+                    <DeckStack.Screen name="DeckList" options={{headerStyle: {height: 70}}}>
+                        {props => <DeckList {...props} decks={decks} addNewDeck={addNewDeck}/>}
+                    </DeckStack.Screen>
+                    <DeckStack.Screen name="New Deck">
+                        {props => <AddDeck {...props} addNewDeck={addNewDeck} />}
+                    </DeckStack.Screen>
                 </DeckStack.Navigator>
             </View>
         )

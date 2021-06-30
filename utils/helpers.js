@@ -1,4 +1,8 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+// TODO: no longer available in current version of expo
+// Attempted import error: 'Notifications' is not exported from 'expo'.
+//import { Notifications, Permissions } from 'expo'
+//const NOTIFICATION_KEY = '@mobile_flashcard_notifications';
 
 const STORAGE_KEY = '@mobile_flashcard_decks';
 
@@ -93,3 +97,50 @@ const testData = {
 }
 
 
+// TODO: no longer available in current version of expo
+// Attempted import error: 'Notifications' is not exported from 'expo'.
+// export function clearNotifications () {
+//     return AsyncStorage.removeItem(NOTIFICATION_KEY)
+//         .then(Notifications.cancelAllScheduledNotificationsAsync);
+// }
+// function createLocalNotification () {
+//     return {
+//         title: 'Did you study today?',
+//         body: "Don't forget to study your mobil flashcards!",
+//         ios: {
+//             sound: true,
+//         },
+//         android: {
+//             sound: true,
+//             vibrate: true,
+//             priority: 'high',
+//             sticky: false,
+//         }
+//     }
+// }
+// export function setNotification () {
+//     AsyncStorage.getItem(NOTIFICATION_KEY)
+//         .then(JSON.parse)
+//         .then((data) => {
+//             if (data === null) {
+//             Permissions.askAsync(Permissions.NOTIFICATIONS)
+//                 .then(({ status }) => {
+//                     if (status === 'granted') {
+//                         Notifications.cancelAllScheduledNotificationsAsync();
+//                         let time = new Date();
+//                         time.setDate(time.getDate() + 1);
+//                         time.setHours(8);
+//                         time.setMinutes(0);
+//                         Notifications.scheduleLocalNotificationAsync(
+//                             createLocalNotification(),
+//                             {
+//                                 time: time,
+//                                 repeat: 'day',
+//                             }
+//                         );
+//                         AsyncStorage.setItem(NOTIFICATION_KEY, JSON.stringify(true));
+//                     }
+//                 });
+//             }
+//     })
+// }

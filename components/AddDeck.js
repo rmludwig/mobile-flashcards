@@ -10,11 +10,14 @@ class AddDeck extends Component {
     render() {
         const deckName = this.state.deckName;
         const { navigation } = this.props;
+        // TODO remove logging
+        console.log(".................. AddDecks:",this.props.navigation.dangerouslyGetState());
+
         return (
             <View style={styles.AddDeck}>
-                <View style={styles.Header}>
+                {/* <View style={styles.Header}>
                     <Text style={styles.Title}>New Deck</Text>
-                </View>
+                </View> */}
                 <View style={styles.ButtonGroup}>
                     <Text style={styles.ButtonGroupText}>Enter the new deck name below, along with question and answer.</Text>
                     <TextInput
@@ -29,9 +32,11 @@ class AddDeck extends Component {
                             if (this.state.deckName) {
                                 const newDeckName = this.state.deckName;
                                 this.setState({deckName: ''});
-                                this.props.addNewDeck(newDeckName)
-                                // navigation.reset(newDeckName);
-                                navigation.navigate('DeckList', {screen: newDeckName})
+                                this.props.addNewDeck(newDeckName).then(() => {
+                                // TODO: Notifications is no longer available in current version of expo
+                                //setNotification
+                                // navigation.navigate('Decks', {screen: newDeckName, initial: false, params: {screen: 'DeckStart', initial: false, params: {initial: false}}});
+                                navigation.navigate(newDeckName, {screen: 'DeckStart'}) });
                             }
                         }}>
                             <Text style={{fontWeight: 'bold'}}>Add Deck</Text>
@@ -48,10 +53,7 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: gray,
         alignItems: 'stretch',
-        justifyContent: 'flex-start',
-        // borderColor: '#555',
-        // borderStyle: 'solid',
-        // borderWidth: 5,
+        justifyContent: 'flex-start'
     },
     Header: {
         backgroundColor: white,
@@ -59,11 +61,11 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: white,
-        height: 70,
+        height: 70
     },
     Title:{
         fontWeight: 500,
-        fontSize: 18,
+        fontSize: 18
     },
     ButtonGroup: {
         flex: 1,
@@ -71,14 +73,14 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'flex-start',
         margin: 10,
-        paddingTop: 20,
+        paddingTop: 20
     },
     ButtonGroupText: {
         width: 300,
         height: 50,
         textAlign: 'center',
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'center'
     },
     Button: {
         width: 200,
@@ -92,14 +94,14 @@ const styles = StyleSheet.create({
         marginBottom: 20,
         padding: 5,
         paddingLeft: 25,
-        paddingRight: 25,
+        paddingRight: 25
     },
     ButtonPosition: {
         flex: 1,
         flexDirection: 'row',
         alignItems: 'flex-end',
         justifyContent: 'flex-end',
-        marginBottom: 50,
+        marginBottom: 50
     },
     Input: {
         height: 40,
@@ -109,8 +111,8 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 8,
         textAlignVertical: 'top',
-        backgroundColor: white,
-    },
+        backgroundColor: white
+    }
 })
 
 export default AddDeck;

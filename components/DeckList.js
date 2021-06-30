@@ -5,19 +5,19 @@ import { red, orange, yeller, green, blue, slate, gray, white } from '../utils/c
 
 class DeckList extends Component {
     render() {
-        const { navigation, decks } = this.props;
+        const { navigation, decks, addNewDeck } = this.props;
         // TODO remove logging
-        console.log("Decks found in DeckList:", decks);
-
+        console.log(".................. DeckList:",this.props.navigation.dangerouslyGetState());
+        // console.log("Decks found in DeckList:", decks);
         if (! decks || Object.keys(decks).length < 1) {
             return (
                 <View style={styles.primaryView}>
-                    <View style={styles.ButtonGroupSimple}>
+                    <View style={styles.ButtonGroup}>
                         <Text style={[styles.ButtonGroupText, {fontSize: 14}]}>
                             Add some decks and cards to get started...
                         </Text>
                         <TouchableOpacity style={[styles.Button, {borderColor: green}]} onPress={() => {
-                                navigation.navigate('New Deck')
+                                navigation.navigate('New Deck');
                         }}>
                             <Text style={{fontWeight: 'bold'}}>Add Deck</Text>
                         </TouchableOpacity>
@@ -29,6 +29,20 @@ class DeckList extends Component {
             return (
                 <SafeAreaView style={styles.primaryView}>
                     <ScrollView>
+                        <View style={styles.deck}>
+                            <View style={[styles.ButtonGroup, {backgroundColor: green}]}>
+                                <Text style={[styles.ButtonGroupText, {fontSize: 14, paddingBottom: 5, height: 20}]}>
+                                    Create New Deck
+                                </Text>
+                                <TouchableOpacity style={[styles.Button, {borderColor: slate}]} onPress={() => {
+                                    navigation.navigate('New Deck');
+                                }}>
+                                    <Text style={{fontWeight: 'bold'}}>Add Deck</Text>
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+
+
                         {Object.keys(decks).map((deckName, index) => {
                             return (
                                 <View style={styles.deck} key={index}>

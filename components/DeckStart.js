@@ -9,7 +9,7 @@ class DeckStart extends Component {
         let questionCorrect = correct(deck.title) || 0;
 
         // TODO remove logging
-        console.log("Deck Start props: ", this.props)
+        // console.log("Deck Start props: ", this.props)
         return (
             <View style={styles.primaryView}>
                 <View style={styles.ButtonGroup}>
