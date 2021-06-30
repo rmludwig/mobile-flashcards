@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity, Platform } from 'react-native';
+
 import { red, orange, yeller, green, blue, slate, gray, white, none } from '../utils/colors';
 import { setAlertNotification, clearAlertNotification } from '../utils/helpers';
+import { createConfirmAlert } from '../utils/alert';
 
 class Settings extends Component {
     render() {
@@ -14,18 +16,34 @@ class Settings extends Component {
                 <View style={styles.buttonGroup}>
                     <Text style={styles.buttonGroupText}>The 'Clear All Data' button will remove all data from the state and the local storage.</Text>
                     <TouchableOpacity style={styles.button} onPress={() => {
-                        if (confirm("All you sure you want to remove all data?")) {
+                        const clearData = () => {
                             this.props.clearAllDeckData();
                             navigation.reset({routes: [{ name: 'Decks' }]});
+                        }
+                        if (Platform.OS === 'web') {
+                            if (confirm('All you sure you want to remove all data?')) {
+                                clearData();
+                            }
+                        }
+                        else {
+                            createConfirmAlert({title: 'Clear All Data', message: 'All you sure you want to remove all data?', confirm: clearData});
                         }
                     }}>
                         <Text style={{fontWeight: 'bold'}}>Clear All Data</Text>
                     </TouchableOpacity>
                     <Text style={styles.buttonGroupText}>The 'Build Test Decks' button will replace contents of state and local storage with test data.</Text>
                     <TouchableOpacity style={styles.button} onPress={() => {
-                        if (confirm("All you sure you want to replace all decks with test data?")) {
+                        const resetTestData = () => {
                             this.props.buildTestData();
                             navigation.reset({routes: [{ name: 'Decks' }]});
+                        }
+                        if (Platform.OS === 'web') {
+                            if (confirm("All you sure you want to remove all data?")) {
+                                resetTestData();
+                            }
+                        }
+                        else {
+                            createConfirmAlert({title: 'Build Test Data', message: 'All you sure you want to replace all decks with test data?', confirm: resetTestData});
                         }
                     }}>
                         <Text style={{fontWeight: 'bold'}}>Build Test Decks</Text>

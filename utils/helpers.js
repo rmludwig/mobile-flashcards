@@ -119,7 +119,7 @@ export function setAlertNotification (seconds) {
         // notification flag was not set, so sent the alert
         if (data === null) {
             setTimeout(() => {
-                    alert('Have you studied your flashcards today?');
+                    alert("Don't forget to study your flashcards today!");
                 },
                 seconds * 1000
             );
