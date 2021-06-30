@@ -7,7 +7,16 @@ import { Ionicons } from '@expo/vector-icons';
 import AddDeck from './components/AddDeck';
 import NavDecks from './components/NavDecks';
 import Settings from './components/Settings';
-import { getDecks, emptyAllDecks, buildTestDecks, createDeck, addCardToDeck } from './utils/helpers';
+import { orange, gray, blue, slate } from './utils/colors';
+import {
+    getDecks,
+    emptyAllDecks,
+    buildTestDecks,
+    createDeck,
+    addCardToDeck,
+    setAlertNotification,
+    clearAlertNotification
+} from './utils/helpers';
 
 const Tab = createBottomTabNavigator();
 
@@ -24,14 +33,16 @@ class App extends React.Component {
             }));
             this.setState({hasLoaded: true});
         });
+        // TODO: Local Notifications is no longer available in current version of expo
+        // so using this alert notification as a substitute
+        clearAlertNotification();
+        setAlertNotification(30);
     }
 
     clearAllDeckData = () => {
         emptyAllDecks().then(
             this.setState({decks: {}})
         )
-        //TODO: remove logging
-        //getDecks().then((decks) => {alert("Removed all deck content. Decks = " + JSON.stringify(decks)) });
     }
 
     buildTestData = () => {
@@ -39,8 +50,6 @@ class App extends React.Component {
             this.setState(() => ({
                 decks
             }));
-            //TODO: remove logging
-            //getDecks().then((decks) => {alert("Built new decks as: " + JSON.stringify(decks)) });
         });
     }
 
@@ -56,8 +65,6 @@ class App extends React.Component {
                     }
                 }
             }));
-            //TODO: remove logging
-            //getDecks().then((decks) => {alert("Full deck list from storage is: " + JSON.stringify(decks)) });
         });
     }
 
@@ -79,20 +86,17 @@ class App extends React.Component {
                     }
                 }
             }));
-            //TODO: remove logging
-            //getDecks().then((decks) => {alert("Deck list with new question from storage is: " + JSON.stringify(decks)) });
         });
     }
 
     render() {
         // TODO: remove logging
         // console.log("App rendering with state = ", this.state);
-
         if (! this.state.hasLoaded) {
             return (
                 <View style={styles.loading}>
                     <Text style={styles.loadingText}>Loading Stored Data</Text>
-                    <ActivityIndicator color={"#888"} />
+                    <ActivityIndicator color={blue} />
                 </View>
             );
         }
@@ -122,17 +126,17 @@ class App extends React.Component {
                             },
                         })}
                         tabBarOptions={{
-                            activeTintColor: 'tomato',
-                            inactiveTintColor: 'gray',
+                            activeTintColor: orange,
+                            inactiveTintColor: slate,
                         }}
                     >
                         {/* TODO: using AppContext could be more efficient than using callback to pass props */}
                         <Tab.Screen name="Decks">
                             {props => <NavDecks {...props} decks={this.state.decks} addNewCard={this.addNewCard} addNewDeck={this.addNewDeck} />}
                         </Tab.Screen>
-                        {/* <Tab.Screen name="New Deck">
+                        <Tab.Screen name="New Deck">
                             {props => <AddDeck {...props} addNewDeck={this.addNewDeck} />}
-                        </Tab.Screen> */}
+                        </Tab.Screen>
                         <Tab.Screen name="Settings">
                             {props => <Settings {...props} clearAllDeckData={this.clearAllDeckData} buildTestData={this.buildTestData} />}
                         </Tab.Screen>
@@ -146,7 +150,7 @@ class App extends React.Component {
 const styles = StyleSheet.create({
     loading: {
         flex: 1,
-        backgroundColor: '#aaa',
+        backgroundColor: gray,
         alignItems: 'center',
         justifyContent: 'center'
     },

@@ -1,9 +1,9 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-// TODO: no longer available in current version of expo
-// Attempted import error: 'Notifications' is not exported from 'expo'.
+// TODO: expo.notification is no longer available in current version of expo
+// Error: Attempted import error: 'Notifications' is not exported from 'expo'.
 //import { Notifications, Permissions } from 'expo'
-//const NOTIFICATION_KEY = '@mobile_flashcard_notifications';
 
+const NOTIFICATION_KEY = '@mobile_flashcard_notifications';
 const STORAGE_KEY = '@mobile_flashcard_decks';
 
 /**
@@ -14,8 +14,6 @@ const STORAGE_KEY = '@mobile_flashcard_decks';
 export function getDecks () {
     return AsyncStorage.getItem(STORAGE_KEY).then(JSON.parse);
 }
-
-// TODO getDeck: take in a single id argument and return the deck associated with that id.
 
 /**
  * Function to add a new deck to async storage.
@@ -28,7 +26,7 @@ export function createDeck (newDeckTitle) {
             title: newDeckTitle,
             questions: []
         }
-    }))
+    }));
 }
 
 /**
@@ -42,7 +40,7 @@ export function addCardToDeck (deck, question, answer) {
             ...deck,
             questions: deck.questions.concat({question: question, answer: answer})
         }
-    }))
+    }));
 }
 
 /**
@@ -63,6 +61,7 @@ export function buildTestDecks () {
     return AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(testData)).then(() => testData);
 }
 
+// Default test data
 const testData = {
     TestDeck1: {
         title: 'TestDeck1',
@@ -94,6 +93,42 @@ const testData = {
             }
         ]
     }
+}
+
+/**
+ * Function intends to replicate notification clearing logic. Since the expo.notification
+ * we learned in the course work is no longer available in the new versions of expo.
+ *
+ * @returns boolean representing if notification was sent
+ */
+export function clearAlertNotification () {
+    return AsyncStorage.removeItem(NOTIFICATION_KEY);
+}
+
+/**
+ * Function intends to replicate notification logic thru alerts. Since the expo.notification
+ * we learned in the course work is no longer available in the new versions of expo.
+ *
+ * @params int number of seconds to wait for notification
+ * @returns boolean representing if notification was sent
+ */
+export function setAlertNotification (seconds) {
+    AsyncStorage.getItem(NOTIFICATION_KEY)
+    .then(JSON.parse)
+    .then((data) => {
+        // notification flag was not set, so sent the alert
+        if (data === null) {
+            setTimeout(() => {
+                    alert('Have you studied your flashcards today?');
+                },
+                seconds * 1000
+            );
+            // update storage to prevent further notification
+            AsyncStorage.setItem(NOTIFICATION_KEY, JSON.stringify({notificationWasSent: true}))
+            .then(() => {return true});
+        }
+        return false;
+    });
 }
 
 
