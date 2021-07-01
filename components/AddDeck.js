@@ -33,7 +33,7 @@ class AddDeck extends Component {
                                 this.props.addNewDeck(newDeckName).then(() => {
                                 // TODO: Local Notifications is no longer available in current version of expo
                                 // so using this alert notification as a substitute
-                                setAlertNotification(30);
+                                setAlertNotification(60);
                                 navigation.navigate(newDeckName, {screen: 'DeckStart'}) });
                             }
                         }}>

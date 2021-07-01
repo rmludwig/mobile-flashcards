@@ -21,7 +21,7 @@ class DeckStart extends Component {
                     <TouchableOpacity style={[styles.button, {borderColor: green}]} onPress={() => {
                             navigation.navigate('AddCard')
                     }}>
-                        <Text style={{fontWeight: 'bold'}}>Add Question</Text>
+                        <Text style={{fontWeight: 'bold'}}>Add Card</Text>
                     </TouchableOpacity>
                     {deck.questions.length ?
                         <TouchableOpacity style={styles.button} onPress={() => {

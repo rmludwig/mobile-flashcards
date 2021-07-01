@@ -36,7 +36,7 @@ class App extends React.Component {
         // TODO: Local Notifications is no longer available in current version of expo
         // so using this alert notification as a substitute
         clearAlertNotification();
-        setAlertNotification(30);
+        setAlertNotification(120);
     }
 
     clearAllDeckData = () => {
