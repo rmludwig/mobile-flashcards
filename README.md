@@ -46,6 +46,15 @@ have not tested my final project there.
 
 
 ----------------------------------------------------------------
+# Citations
+- The course content and in class project got me started, I referred to Tyler's code
+at the beginning, but moved away from it as the versions I was using did not line up
+with the fitness app.
+- I researched on stackoverflow, YouTube videos, and other online posts.
+- The online documentation for expo and react-native was used heavily.
+
+
+----------------------------------------------------------------
 ## Features
 
 1. I created the project using the **create-react-native-app** as specified.
@@ -87,7 +96,7 @@ to use it in my projects at work. Thank you for reading. *Please pass my project
 
 
 ----------------------------------------------------------------
-# Project Overview
+## Project Overview
 For the UdaciCards project, you will build a mobile application (Android or iOS - or
 both) that allows users to study collections of flashcards. The app will allow users
 to create different categories of flashcards called "decks", add flashcards to those
@@ -95,7 +104,7 @@ decks, then take quizzes on those decks.
 
 
 ----------------------------------------------------------------
-# Data (from project description)
+## Data (from project description)
 
 We'll use AsyncStorage to store our decks and flashcards.
 
@@ -131,7 +140,7 @@ Notice each deck creates a new key on the object. Each deck has a title and a qu
 key. title is the title for the specific deck and questions is an array of questions and
 answers for that deck.
 
-## Tip
+### Tip
 To manage your AsyncStorage database, you'll want to create four different helper methods.
 
 **getDecks**: return all of the decks along with their titles, questions, and answers.
